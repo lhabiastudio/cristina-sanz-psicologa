@@ -1,0 +1,2554 @@
+<!-- DEMO — Diseño conceptual por LhabiaStudio. No autorizado para uso comercial -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cristina Sanz — Psicóloga Especialista en Terapia EMDR · Madrid</title>
+  <meta name="description" content="Psicóloga especialista en Terapia EMDR en Madrid. Tratamiento de trauma, ansiedad y TEPT con el método terapéutico más respaldado por la investigación. Primera consulta sin compromiso." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =============================================
+       RESET & BASE
+    ============================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* =============================================
+       DESIGN TOKENS
+    ============================================= */
+    :root {
+      /* Brand palette — azul pizarra */
+      --accent:          #4A6FA5;
+      --accent-dark:     #3A5A8C;
+      --accent-deeper:   #2C4570;
+      --accent-light:    #EEF3FA;
+      --accent-tint-1:   #D9E5F5;
+      --accent-tint-2:   #C4D4ED;
+      --accent-hover:    #6B8DBF;
+
+      /* Backgrounds */
+      --bg:              #FAFBFC;
+      --bg-alt:          #F3F5F9;
+      --surface:         #FFFFFF;
+
+      /* Typography */
+      --text:            #1E2433;
+      --text-muted:      #5A6375;
+      --text-subtle:     #8490A8;
+      --text-placeholder:#8A93A8;
+
+      /* UI chrome */
+      --border:          #E2E7EF;
+      --border-focus:    var(--accent);
+      --footer-bg:       #141928;
+      --status-online:   #34A853;
+      --error:           #D95F5F;
+
+      /* Shadows */
+      --shadow-sm:       0 1px 4px rgba(30,36,51,.06);
+      --shadow-card:     0 2px 16px rgba(30,36,51,.07);
+      --shadow-md:       0 6px 24px rgba(30,36,51,.10);
+      --shadow-lg:       0 16px 48px rgba(30,36,51,.13);
+      --shadow-accent:   0 8px 28px rgba(74,111,165,.35);
+
+      /* Radii */
+      --radius-xs:       4px;
+      --radius-sm:       8px;
+      --radius-md:       12px;
+      --radius-lg:       20px;
+      --radius-xl:       28px;
+      --radius-full:     999px;
+
+      /* Motion */
+      --transition:      0.35s cubic-bezier(.25,.46,.45,.94);
+      --transition-fast: 0.2s cubic-bezier(.25,.46,.45,.94);
+
+      /* Layout */
+      --max-w:           1080px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; text-decoration: none; }
+
+    /* =============================================
+       SCROLL-REVEAL CLASSES
+    ============================================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity var(--transition), transform var(--transition);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-32px);
+      transition: opacity var(--transition), transform var(--transition);
+    }
+    .reveal-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(32px);
+      transition: opacity var(--transition), transform var(--transition);
+    }
+    .reveal-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.95);
+      transition: opacity var(--transition), transform var(--transition);
+    }
+    .reveal-scale.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Stagger delays */
+    .stagger-1 { transition-delay: 0.06s; }
+    .stagger-2 { transition-delay: 0.12s; }
+    .stagger-3 { transition-delay: 0.18s; }
+    .stagger-4 { transition-delay: 0.24s; }
+
+    /* =============================================
+       LAYOUT HELPERS
+    ============================================= */
+    .container {
+      width: 100%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section { padding: 100px 0; }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 1px;
+      flex-shrink: 0;
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 3.6vw, 2.25rem);
+      font-weight: 700;
+      line-height: 1.22;
+      color: var(--text);
+      margin-bottom: 16px;
+      letter-spacing: -.02em;
+    }
+
+    /* =============================================
+       NAV
+    ============================================= */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(250,251,252,.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow var(--transition-fast);
+    }
+
+    nav.scrolled {
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 62px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -.01em;
+    }
+
+    .nav-logo-text span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: none;
+      list-style: none;
+      align-items: center;
+      gap: 26px;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color var(--transition-fast);
+      padding: 4px 0;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 1px;
+      transition: width var(--transition);
+    }
+
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-links a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: var(--radius-xs);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 0 18px;
+      min-height: 40px;
+      border-radius: var(--radius-sm);
+      transition: background var(--transition), box-shadow var(--transition), transform var(--transition-fast);
+      letter-spacing: -.01em;
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover {
+      background: var(--accent-dark);
+      box-shadow: var(--shadow-accent);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta:active { transform: translateY(0); }
+
+    .nav-cta:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    /* =============================================
+       HERO
+    ============================================= */
+    .hero {
+      padding: 96px 0 84px;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    /* Decorative gradient orbs */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -160px;
+      right: -200px;
+      width: 620px;
+      height: 620px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(74,111,165,.11) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -120px;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(74,111,165,.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 52px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--accent-light);
+      border: 1px solid var(--accent-tint-1);
+      border-radius: var(--radius-full);
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent-dark);
+      letter-spacing: .01em;
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--status-online);
+      flex-shrink: 0;
+      box-shadow: 0 0 0 2px rgba(52,168,83,.25);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.1rem, 5.8vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -.03em;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .hero-title-accent {
+      color: var(--accent);
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Subtle underline decoration on EMDR */
+    .hero-title-accent::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent) 0%, var(--accent-tint-2) 100%);
+      border-radius: 2px;
+      opacity: .5;
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 26px;
+      padding-left: 14px;
+      border-left: 3px solid var(--accent);
+      line-height: 1.5;
+    }
+
+    .hero-lead {
+      font-size: clamp(1rem, 2.4vw, 1.15rem);
+      font-weight: 400;
+      color: var(--text-muted);
+      line-height: 1.72;
+      margin-bottom: 38px;
+      max-width: 540px;
+    }
+
+    .hero-lead strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--accent);
+      color: #fff;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      letter-spacing: -.01em;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-accent);
+    }
+
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-primary:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .btn-primary svg {
+      transition: transform var(--transition);
+      flex-shrink: 0;
+    }
+
+    .btn-primary:hover svg { transform: translateX(3px); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 14px 0;
+      border: none;
+      cursor: pointer;
+      transition: color var(--transition-fast);
+      text-decoration: none;
+    }
+
+    .btn-secondary:hover { color: var(--text); }
+
+    .btn-secondary:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: var(--radius-xs);
+    }
+
+    /* Hero visual — organic blob shape */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-blob-wrap {
+      position: relative;
+      width: 300px;
+      height: 300px;
+    }
+
+    .hero-blob {
+      width: 100%;
+      height: 100%;
+      border-radius: 68% 32% 44% 56% / 52% 44% 56% 48%;
+      background: linear-gradient(145deg, var(--accent-light) 0%, var(--accent-tint-1) 60%, var(--accent-tint-2) 100%);
+      animation: blob-morph 9s ease-in-out infinite;
+    }
+
+    @keyframes blob-morph {
+      0%, 100% { border-radius: 68% 32% 44% 56% / 52% 44% 56% 48%; }
+      33%       { border-radius: 44% 56% 68% 32% / 48% 58% 42% 52%; }
+      66%       { border-radius: 56% 44% 32% 68% / 60% 40% 56% 44%; }
+    }
+
+    .hero-blob-inner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, var(--accent) 0%, var(--accent-dark) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 36px rgba(74,111,165,.4);
+    }
+
+    /* Floating stats chips on hero */
+    .hero-stat {
+      position: absolute;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-stat-val {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .hero-stat-lbl {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--text-muted);
+      white-space: nowrap;
+      line-height: 1.3;
+    }
+
+    .hero-stat-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-xs);
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .hero-stat--top {
+      top: 12px;
+      right: -10px;
+      animation: float-a 6s ease-in-out infinite;
+    }
+
+    .hero-stat--bottom {
+      bottom: 20px;
+      left: -10px;
+      animation: float-b 7s ease-in-out infinite;
+    }
+
+    @keyframes float-a {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-7px); }
+    }
+
+    @keyframes float-b {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(7px); }
+    }
+
+    /* =============================================
+       QUE ES EMDR
+    ============================================= */
+    .que-es {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .que-es-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 52px;
+      align-items: start;
+    }
+
+    .que-es-intro p {
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+
+    .que-es-intro p:last-child { margin-bottom: 0; }
+
+    .que-es-intro strong { color: var(--text); font-weight: 600; }
+
+    .who-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--text-subtle);
+      margin-bottom: 16px;
+    }
+
+    .indications-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .indication-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 18px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+    }
+
+    .indication-item:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-card);
+      transform: translateX(3px);
+    }
+
+    .indication-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-sm);
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .indication-text h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .indication-text p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* =============================================
+       PROCESO (FASES EMDR)
+    ============================================= */
+    .proceso {
+      background: var(--bg-alt);
+    }
+
+    .proceso-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .proceso-header p {
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .fases-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .fase-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      box-shadow: var(--shadow-card);
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+
+    .fase-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--accent) 0%, var(--accent-tint-2) 100%);
+      border-radius: 0 0 0 0;
+    }
+
+    .fase-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent-tint-1);
+    }
+
+    .fase-number {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .fase-number-badge {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .fase-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-md);
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+
+    .fase-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+      letter-spacing: -.01em;
+    }
+
+    .fase-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.72;
+    }
+
+    /* =============================================
+       SOBRE CRISTINA
+    ============================================= */
+    .sobre {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 52px;
+      align-items: start;
+    }
+
+    .sobre-visual-wrap {
+      display: flex;
+      justify-content: center;
+    }
+
+    .sobre-avatar {
+      position: relative;
+      width: 240px;
+      flex-shrink: 0;
+    }
+
+    .sobre-avatar-bg {
+      width: 240px;
+      height: 240px;
+      border-radius: 56% 44% 48% 52% / 52% 48% 52% 48%;
+      background: linear-gradient(145deg, var(--accent-light) 0%, var(--accent-tint-1) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .sobre-badge {
+      position: absolute;
+      bottom: 0px;
+      right: -16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 10px 16px;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .sobre-badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--status-online);
+      flex-shrink: 0;
+      box-shadow: 0 0 0 3px rgba(52,168,83,.2);
+    }
+
+    .sobre-badge-text {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .sobre-texto h2 { margin-bottom: 18px; }
+
+    .sobre-texto p {
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+
+    .sobre-texto p:last-of-type { margin-bottom: 28px; }
+
+    .sobre-location {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+
+    .sobre-location svg { flex-shrink: 0; margin-top: 2px; color: var(--accent); }
+
+    .credenciales {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-bottom: 32px;
+    }
+
+    .credencial-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent-light);
+      color: var(--accent-dark);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 13px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--accent-tint-2);
+    }
+
+    /* =============================================
+       TESTIMONIOS
+    ============================================= */
+    .testimonios {
+      background: var(--bg);
+      overflow: hidden;
+    }
+
+    .testimonios-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .testimonios-header p {
+      color: var(--text-muted);
+      max-width: 460px;
+      margin: 0 auto;
+      font-size: 15px;
+    }
+
+    .testimonios-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .testimonio-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      box-shadow: var(--shadow-card);
+      position: relative;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .testimonio-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .quote-mark {
+      position: absolute;
+      top: 24px;
+      right: 28px;
+      color: var(--accent-tint-2);
+    }
+
+    .testimonio-stars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 18px;
+    }
+
+    .testimonio-text {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.75;
+      font-style: italic;
+      margin-bottom: 24px;
+    }
+
+    .testimonio-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .testimonio-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-tint-1) 0%, var(--accent-tint-2) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent-dark);
+      flex-shrink: 0;
+    }
+
+    .testimonio-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .testimonio-detail {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* =============================================
+       FAQ (ACORDEÓN CSS-ONLY)
+    ============================================= */
+    .faq {
+      background: var(--bg-alt);
+    }
+
+    .faq-header {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+
+    .faq-header p {
+      color: var(--text-muted);
+      max-width: 460px;
+      margin: 0 auto;
+      font-size: 15px;
+    }
+
+    .faq-list {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* CSS accordion — uses <details> / <summary> */
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .faq-item[open] {
+      border-color: var(--accent-tint-2);
+      box-shadow: var(--shadow-card);
+    }
+
+    .faq-item summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 24px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+      transition: background var(--transition-fast);
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-item summary:hover { background: var(--bg); }
+
+    .faq-item summary:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: -2px;
+    }
+
+    .faq-chevron {
+      flex-shrink: 0;
+      color: var(--accent);
+      transition: transform var(--transition);
+    }
+
+    .faq-item[open] .faq-chevron {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      padding: 0 24px 22px;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.78;
+      border-top: 1px solid var(--border);
+      padding-top: 18px;
+    }
+
+    .faq-answer strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* =============================================
+       CONTACTO
+    ============================================= */
+    .contacto {
+      background: linear-gradient(160deg, var(--accent) 0%, var(--accent-deeper) 100%);
+      padding: 100px 0;
+    }
+
+    .contacto-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 52px;
+    }
+
+    .contacto-info {
+      color: rgba(255,255,255,.85);
+    }
+
+    .contacto-info .section-label {
+      color: rgba(255,255,255,.6);
+    }
+
+    .contacto-info .section-label::before {
+      background: rgba(255,255,255,.5);
+    }
+
+    .contacto-info h2 {
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .contacto-lead {
+      font-size: 15px;
+      color: rgba(255,255,255,.8);
+      line-height: 1.75;
+      margin-bottom: 36px;
+    }
+
+    .info-items {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .info-item-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: rgba(255,255,255,.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,.9);
+      flex-shrink: 0;
+    }
+
+    .info-item-text strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,.95);
+      margin-bottom: 2px;
+    }
+
+    .info-item-text span {
+      font-size: 13px;
+      color: rgba(255,255,255,.65);
+      line-height: 1.5;
+    }
+
+    /* Contact form card */
+    .contact-form-card {
+      background: var(--surface);
+      border-radius: var(--radius-xl);
+      padding: 44px 40px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .contact-form-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+      letter-spacing: -.01em;
+    }
+
+    .contact-form-card .form-intro {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 7px;
+      letter-spacing: .01em;
+    }
+
+    .form-group label svg { color: var(--accent); flex-shrink: 0; }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--text);
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition);
+      resize: vertical;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%235A6375' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 38px;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--text-placeholder);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(74,111,165,.12);
+    }
+
+    .form-group input:focus-visible,
+    .form-group select:focus-visible,
+    .form-group textarea:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .form-group textarea { min-height: 110px; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .form-privacy {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 22px;
+      line-height: 1.55;
+    }
+
+    .form-privacy svg {
+      flex-shrink: 0;
+      color: var(--accent);
+      margin-top: 1px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--accent);
+      color: #fff;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 15px;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      letter-spacing: -.01em;
+    }
+
+    .btn-submit:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-accent);
+    }
+
+    .btn-submit:active { transform: translateY(0); }
+
+    .btn-submit:focus-visible {
+      outline: 2px solid var(--accent-dark);
+      outline-offset: 3px;
+    }
+
+    .btn-submit svg { flex-shrink: 0; transition: transform var(--transition); }
+    .btn-submit:hover svg { transform: translateX(3px); }
+
+    /* Success state */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 12px 0;
+    }
+
+    .form-success-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      margin: 0 auto 20px;
+    }
+
+    .form-success strong {
+      display: block;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+      letter-spacing: -.01em;
+    }
+
+    .form-success p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    footer {
+      background: var(--footer-bg);
+      padding: 44px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,.8);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px 24px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: rgba(255,255,255,.45);
+      transition: color var(--transition-fast);
+    }
+
+    .footer-links a:hover { color: rgba(255,255,255,.8); }
+
+    .footer-links a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: var(--radius-xs);
+    }
+
+    .footer-divider {
+      width: 1px;
+      height: 14px;
+      background: rgba(255,255,255,.15);
+      align-self: center;
+    }
+
+    .footer-credit {
+      font-size: 12px;
+      color: rgba(255,255,255,.35);
+    }
+
+    .footer-credit a {
+      color: var(--accent-hover);
+      font-weight: 500;
+      transition: color var(--transition-fast);
+    }
+
+    .footer-credit a:hover { color: var(--accent-light); }
+
+    .footer-credit a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: var(--radius-xs);
+    }
+
+    .footer-disclaimer {
+      font-size: 11px;
+      color: rgba(255,255,255,.2);
+      letter-spacing: .02em;
+    }
+
+    /* =============================================
+       RESPONSIVE — max-width 480px (mobile first)
+    ============================================= */
+    @media (max-width: 480px) {
+      section { padding: 68px 0; }
+      .contacto { padding: 68px 0; }
+
+      .hero { padding: 72px 0 64px; }
+      .hero h1 { font-size: 2.1rem; letter-spacing: -.025em; }
+
+      .hero-blob-wrap { width: 240px; height: 240px; }
+      .hero-blob-inner { width: 110px; height: 110px; }
+
+      .hero-stat--top { right: 0; }
+      .hero-stat--bottom { left: 0; }
+
+      .contact-form-card { padding: 28px 20px; }
+
+      .faq-item summary { padding: 16px 18px; font-size: 14px; }
+      .faq-answer { padding: 16px 18px; font-size: 13px; }
+
+      .fase-card { padding: 26px 22px; }
+      .testimonio-card { padding: 26px 22px; }
+
+      .footer-links { gap: 12px 16px; }
+    }
+
+    /* =============================================
+       RESPONSIVE — min-width 768px (tablet)
+    ============================================= */
+    @media (min-width: 768px) {
+      .nav-links { display: flex; }
+
+      .hero-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-blob-wrap { width: 320px; height: 320px; }
+      .hero-blob-inner { width: 148px; height: 148px; }
+
+      .que-es-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+      }
+
+      .indications-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .fases-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .sobre-grid {
+        grid-template-columns: 260px 1fr;
+      }
+
+      .sobre-visual-wrap { justify-content: flex-start; }
+
+      .testimonios-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .contacto-grid {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-inner {
+        flex-direction: row;
+        justify-content: center;
+        gap: 24px;
+        text-align: left;
+      }
+    }
+
+    /* =============================================
+       RESPONSIVE — min-width 1024px (desktop)
+    ============================================= */
+    @media (min-width: 1024px) {
+      .hero { padding: 116px 0 104px; }
+      .hero h1 { font-size: 3.4rem; }
+
+      .hero-blob-wrap { width: 360px; height: 360px; }
+      .hero-blob-inner { width: 164px; height: 164px; }
+
+      .fases-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .testimonios-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .contact-form-card { padding: 52px 48px; }
+
+      .contacto-grid {
+        grid-template-columns: 1fr 1.3fr;
+        gap: 72px;
+      }
+    }
+
+    /* =============================================
+       STAGGER DELAYS FOR GRID CHILDREN
+    ============================================= */
+    .fases-grid .fase-card:nth-child(2) { transition-delay: .07s; }
+    .fases-grid .fase-card:nth-child(3) { transition-delay: .14s; }
+    .fases-grid .fase-card:nth-child(4) { transition-delay: .21s; }
+
+    .testimonios-grid .testimonio-card:nth-child(2) { transition-delay: .09s; }
+    .testimonios-grid .testimonio-card:nth-child(3) { transition-delay: .18s; }
+
+    .indications-grid .indication-item:nth-child(2) { transition-delay: .06s; }
+    .indications-grid .indication-item:nth-child(3) { transition-delay: .12s; }
+    .indications-grid .indication-item:nth-child(4) { transition-delay: .18s; }
+    .indications-grid .indication-item:nth-child(5) { transition-delay: .24s; }
+
+    /* =============================================
+       REDUCED MOTION
+    ============================================= */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal-left, .reveal-right, .reveal-scale {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      .btn-primary, .btn-submit, .fase-card, .testimonio-card,
+      .indication-item, .nav-cta {
+        transition: none;
+      }
+
+      .hero-blob { animation: none; }
+      .hero-stat--top, .hero-stat--bottom { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =============================================
+       NAV
+  ============================================= -->
+  <nav id="mainNav">
+    <div class="container">
+      <div class="nav-inner">
+
+        <a href="#inicio" class="nav-logo" aria-label="Cristina Sanz Psicóloga — inicio">
+          <div class="nav-logo-mark" aria-hidden="true">
+            <!-- Psi symbol -->
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M9 3C5.7 3 3 5.7 3 9C3 12.3 5.7 14.5 9 14.5M9 3C12.3 3 15 5.7 15 9C15 12.3 12.3 14.5 9 14.5M9 3V16.5M6.5 16.5H11.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span class="nav-logo-text">Cristina Sanz <span>Psicóloga</span></span>
+        </a>
+
+        <ul class="nav-links" role="list">
+          <li><a href="#que-es-emdr">EMDR</a></li>
+          <li><a href="#proceso">El proceso</a></li>
+          <li><a href="#sobre">Sobre Cristina</a></li>
+          <li><a href="#faq">Preguntas frecuentes</a></li>
+        </ul>
+
+        <a href="#contacto" class="nav-cta" aria-label="Solicitar primera consulta">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+          Primera consulta
+        </a>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- =============================================
+       HERO
+  ============================================= -->
+  <section class="hero" id="inicio">
+    <div class="container">
+      <div class="hero-grid">
+
+        <!-- Copy column -->
+        <div>
+          <div class="hero-eyebrow reveal">
+            <span class="hero-badge">
+              <span class="hero-badge-dot" aria-hidden="true"></span>
+              Especialista certificada EMDR Europe
+            </span>
+          </div>
+
+          <h1 class="reveal">
+            El trauma no define<br />
+            tu <span class="hero-title-accent">futuro</span>.
+          </h1>
+
+          <p class="hero-subtitle reveal">
+            Psicóloga especialista en Terapia EMDR &mdash; Madrid
+          </p>
+
+          <p class="hero-lead reveal">
+            Hay experiencias que el tiempo no cura por sí solo. La Terapia EMDR es
+            <strong>el método con mayor respaldo científico</strong> para procesar trauma,
+            ansiedad y estrés postraumático. Aquí encontrarás el espacio y la guía para retomar las riendas de tu vida.
+          </p>
+
+          <div class="hero-actions reveal">
+            <a href="#contacto" class="btn-primary">
+              Solicitar primera consulta
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </a>
+            <a href="#que-es-emdr" class="btn-secondary">
+              Conocer el método
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Visual column -->
+        <div class="hero-visual reveal-right">
+          <div class="hero-blob-wrap" aria-hidden="true">
+            <div class="hero-blob"></div>
+
+            <div class="hero-blob-inner">
+              <!-- EMDR / eye movement symbol — abstract paths -->
+              <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <!-- eye outline -->
+                <path d="M10 36C10 36 20 20 36 20C52 20 62 36 62 36C62 36 52 52 36 52C20 52 10 36 10 36Z" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <!-- iris -->
+                <circle cx="36" cy="36" r="8" stroke="white" stroke-width="2.5"/>
+                <!-- pupil dot -->
+                <circle cx="36" cy="36" r="3" fill="white"/>
+                <!-- bilateral sweep lines -->
+                <path d="M6 29L14 29" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-linecap="round"/>
+                <path d="M58 29L66 29" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-linecap="round"/>
+                <path d="M6 43L14 43" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-linecap="round"/>
+                <path d="M58 43L66 43" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+
+            <!-- Floating stat: años -->
+            <div class="hero-stat hero-stat--top">
+              <div class="hero-stat-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                  <path d="M2 17l10 5 10-5"/>
+                  <path d="M2 12l10 5 10-5"/>
+                </svg>
+              </div>
+              <div>
+                <div class="hero-stat-val">+12 años</div>
+                <div class="hero-stat-lbl">de experiencia clínica</div>
+              </div>
+            </div>
+
+            <!-- Floating stat: avalado -->
+            <div class="hero-stat hero-stat--bottom">
+              <div class="hero-stat-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <path d="M9 12l2 2 4-4"/>
+                </svg>
+              </div>
+              <div>
+                <div class="hero-stat-val">OMS &amp; APA</div>
+                <div class="hero-stat-lbl">método avalado</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       QUE ES EMDR
+  ============================================= -->
+  <section class="que-es" id="que-es-emdr">
+    <div class="container">
+      <div class="que-es-grid">
+
+        <!-- Intro texto -->
+        <div class="reveal-left">
+          <span class="section-label">Qué es</span>
+          <h2>EMDR: el método que<br />cambia la forma en que<br />el cerebro guarda el dolor</h2>
+
+          <div class="que-es-intro">
+            <p>
+              <strong>EMDR</strong> (Eye Movement Desensitization and Reprocessing,
+              Desensibilización y Reprocesamiento por Movimientos Oculares) es una terapia
+              psicológica desarrollada en 1987 y avalada por la
+              <strong>Organización Mundial de la Salud</strong> y la
+              <strong>Asociación Americana de Psicología</strong> para el tratamiento del
+              trauma y el estrés postraumático.
+            </p>
+            <p>
+              Cuando vivimos una experiencia dolorosa que supera nuestra capacidad de procesarla,
+              el recuerdo queda &ldquo;bloqueado&rdquo; en el sistema nervioso, generando
+              respuestas de miedo, evitación o malestar que pueden aparecer años después.
+              La terapia EMDR trabaja directamente con esos recuerdos bloqueados utilizando
+              la estimulación bilateral (movimientos oculares o tapping) para facilitar su
+              procesamiento natural, de forma similar a lo que ocurre durante el
+              sueño REM.
+            </p>
+            <p>
+              El resultado no es olvidar lo que pasó, sino que el recuerdo
+              <strong>deja de doler de la misma manera</strong>. Se integra como parte
+              de tu historia, sin el peso emocional que te limita hoy.
+            </p>
+          </div>
+        </div>
+
+        <!-- Indicaciones -->
+        <div class="reveal-right">
+          <span class="who-tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="8" x2="12" y2="12"/>
+              <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            En qué casos ayuda
+          </span>
+
+          <div class="indications-grid">
+
+            <div class="indication-item reveal">
+              <div class="indication-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                  <line x1="12" y1="17" x2="12.01" y2="17"/>
+                  <circle cx="12" cy="12" r="10"/>
+                </svg>
+              </div>
+              <div class="indication-text">
+                <h4>Trauma y TEPT</h4>
+                <p>Accidentes, agresiones, pérdidas traumáticas, situaciones de violencia.</p>
+              </div>
+            </div>
+
+            <div class="indication-item reveal">
+              <div class="indication-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                </svg>
+              </div>
+              <div class="indication-text">
+                <h4>Ansiedad y ataques de pánico</h4>
+                <p>Miedos intensos, respuestas de alarma desproporcionadas, fobias.</p>
+              </div>
+            </div>
+
+            <div class="indication-item reveal">
+              <div class="indication-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                  <line x1="9" y1="9" x2="9.01" y2="9"/>
+                  <line x1="15" y1="9" x2="15.01" y2="9"/>
+                </svg>
+              </div>
+              <div class="indication-text">
+                <h4>Trauma complejo y apego</h4>
+                <p>Infancias difíciles, maltrato emocional, relaciones disfuncionales repetidas.</p>
+              </div>
+            </div>
+
+            <div class="indication-item reveal">
+              <div class="indication-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+              </div>
+              <div class="indication-text">
+                <h4>Duelo no resuelto</h4>
+                <p>Pérdidas que persisten con una intensidad que no remite con el paso del tiempo.</p>
+              </div>
+            </div>
+
+            <div class="indication-item reveal">
+              <div class="indication-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              </div>
+              <div class="indication-text">
+                <h4>Burnout y estrés crónico</h4>
+                <p>Agotamiento emocional sostenido, desconexión y sensación de no poder más.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       PROCESO (4 FASES EMDR)
+  ============================================= -->
+  <section class="proceso" id="proceso">
+    <div class="container">
+
+      <div class="proceso-header reveal">
+        <span class="section-label">Cómo funciona</span>
+        <h2>Las cuatro fases del<br />proceso terapéutico</h2>
+        <p>Cada proceso es único. Estas fases orientan el trabajo de forma estructurada, siempre adaptada a tu historia y tu ritmo.</p>
+      </div>
+
+      <div class="fases-grid">
+
+        <!-- Fase 1 -->
+        <div class="fase-card reveal">
+          <div class="fase-number">
+            <span class="fase-number-badge" aria-hidden="true">1</span>
+            Fase inicial
+          </div>
+          <div class="fase-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3>Historia y evaluación</h3>
+          <p>Nos conocemos y hago una evaluación completa: tu historia, los síntomas actuales, los recursos con los que ya cuentas. Juntas establecemos los objetivos y los recuerdos diana que trabajaremos.</p>
+        </div>
+
+        <!-- Fase 2 -->
+        <div class="fase-card reveal">
+          <div class="fase-number">
+            <span class="fase-number-badge" aria-hidden="true">2</span>
+            Preparación
+          </div>
+          <div class="fase-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3>Estabilización y recursos</h3>
+          <p>Antes de procesar cualquier recuerdo difícil, construimos juntas una base sólida: técnicas de regulación emocional, recursos internos y un estado de seguridad desde el que trabajar.</p>
+        </div>
+
+        <!-- Fase 3 -->
+        <div class="fase-card reveal">
+          <div class="fase-number">
+            <span class="fase-number-badge" aria-hidden="true">3</span>
+            Procesamiento
+          </div>
+          <div class="fase-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M8 12h8"/>
+              <path d="M12 8l4 4-4 4"/>
+            </svg>
+          </div>
+          <h3>Reprocesamiento EMDR</h3>
+          <p>A través de la estimulación bilateral (movimientos oculares u otras modalidades), el cerebro accede a los recuerdos bloqueados y los procesa de forma natural. El malestar se reduce progresivamente.</p>
+        </div>
+
+        <!-- Fase 4 -->
+        <div class="fase-card reveal">
+          <div class="fase-number">
+            <span class="fase-number-badge" aria-hidden="true">4</span>
+            Integración
+          </div>
+          <div class="fase-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <h3>Consolidación y cierre</h3>
+          <p>Los cambios se asientan. Reforzamos creencias positivas sobre ti misma, evaluamos el trabajo realizado y preparamos el alta cuando la recuperación es estable y duradera.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SOBRE CRISTINA
+  ============================================= -->
+  <section class="sobre" id="sobre">
+    <div class="container">
+      <div class="sobre-grid">
+
+        <!-- Avatar visual -->
+        <div class="sobre-visual-wrap reveal-left">
+          <div class="sobre-avatar">
+            <div class="sobre-avatar-bg" aria-hidden="true">
+              <!-- Abstract geometric figure — female silhouette suggestion -->
+              <svg width="140" height="165" viewBox="0 0 140 165" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <!-- Head -->
+                <ellipse cx="70" cy="46" rx="28" ry="30" fill="#4A6FA5" opacity=".85"/>
+                <!-- Neck -->
+                <rect x="62" y="72" width="16" height="14" rx="6" fill="#4A6FA5" opacity=".7"/>
+                <!-- Shoulders / torso -->
+                <path d="M20 148C20 118 42 96 70 96C98 96 120 118 120 148" fill="#4A6FA5" opacity=".65"/>
+              </svg>
+            </div>
+
+            <div class="sobre-badge">
+              <span class="sobre-badge-dot" aria-hidden="true"></span>
+              <span class="sobre-badge-text">Acepta nuevos pacientes</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bio text -->
+        <div class="sobre-texto reveal-right">
+          <span class="section-label">Sobre Cristina</span>
+          <h2>Formación rigurosa.<br />Presencia cercana.</h2>
+
+          <p>
+            Me llamo Cristina Sanz y soy psicóloga especialista en Terapia EMDR con sede en Madrid.
+            Llevo más de doce años acompañando a personas que cargan con experiencias que les cuesta
+            dejar atrás: traumas de infancia, accidentes, pérdidas, relaciones que dejan huella.
+          </p>
+
+          <p>
+            Soy terapeuta acreditada por <strong>EMDR Europe</strong> y miembro de la
+            <strong>Asociación EMDR España</strong>. Me formé en la Universidad Autónoma de Madrid
+            y continué con un máster en Psicología Clínica y de la Salud. Desde entonces no he
+            dejado de formarme: trauma complejo, apego, técnicas de regulación somática. Creo que
+            la formación continua no es opcional cuando tienes la responsabilidad de acompañar el
+            sufrimiento de otra persona.
+          </p>
+
+          <p>
+            Mi forma de trabajar combina el rigor del protocolo EMDR con un trato humano y sin
+            juicios. No hay prisas. No hay guiones prefijados. Lo que traes es exactamente
+            lo que necesita espacio.
+          </p>
+
+          <div class="sobre-location">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            Consulta presencial en Madrid (Salamanca) y sesiones online en toda España.
+          </div>
+
+          <div class="credenciales">
+            <span class="credencial-tag">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6l2.5 2.5L10 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Colegiada M-XXXXX
+            </span>
+            <span class="credencial-tag">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6l2.5 2.5L10 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              EMDR Europe Certified
+            </span>
+            <span class="credencial-tag">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6l2.5 2.5L10 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Asociación EMDR España
+            </span>
+            <span class="credencial-tag">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6l2.5 2.5L10 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              +12 años de experiencia
+            </span>
+            <span class="credencial-tag">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6l2.5 2.5L10 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Presencial y Online
+            </span>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#contacto" class="btn-primary">
+              Solicitar primera consulta
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       TESTIMONIOS
+  ============================================= -->
+  <section class="testimonios" id="testimonios">
+    <div class="container">
+
+      <div class="testimonios-header reveal">
+        <span class="section-label">Experiencias</span>
+        <h2>Lo que dicen quienes<br />ya han pasado por aquí</h2>
+        <p>Nombres cambiados para preservar la privacidad. Testimonios reales de pacientes.</p>
+      </div>
+
+      <div class="testimonios-grid">
+
+        <!-- Testimonio 1 -->
+        <div class="testimonio-card reveal">
+          <div class="quote-mark" aria-hidden="true">
+            <svg width="36" height="28" viewBox="0 0 36 28" fill="none">
+              <path d="M0 28V17.2C0 7.73 5.36 2.43 16.08 1.3L17.6 4.9C13.01 5.89 10.43 8.12 9.86 11.6H16V28H0ZM20 28V17.2C20 7.73 25.36 2.43 36.08 1.3L37.6 4.9C33.01 5.89 30.43 8.12 29.86 11.6H36V28H20Z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="testimonio-stars" aria-label="5 estrellas">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5A623" stroke="#F5A623" stroke-width="1" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5A623" stroke="#F5A623" stroke-width="1" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5A623" stroke="#F5A623" stroke-width="1" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5A623" stroke="#F5A623" stroke-width="1" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5A623" stroke="#F5A623" stroke-width="1" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonio-text">
+            "Llevaba cuatro años sin poder hablar de lo que me pasó sin disociarme. Tras cinco meses con Cristina, ese recuerdo ya no me paraliza. Sigo siendo yo, pero sin el peso que cargaba. Es difícil explicar lo que cambia por dentro, pero cambia."
+          </p>
+          <div class="testimonio-author">
+            <div class="testimonio-avatar" aria-hidden="true">L</div>
+            <div>
+              <div class="testimonio-name">Laura G.</div>
+              <div class="testimonio-detail">Paciente, tratamiento de trauma</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonio 2 -->
+        <div class="testimonio-card reveal">
+          <div class="quote-mark" aria-hidden="true">
+            <svg width="36" height="28" viewBox="0 0 36 28" fill="none">
+              <path d="M0 28V17.2C0 7.73 5.36 2.43 16.08 1.3L17.6 4.9C13.01 5.89 10.43 8.12 9.86 11.6H16V28H0ZM20 28V17.2C20 7.73 25.36 2.43 36.08 1.3L37.6 4.9C33.01 5.89 30.43 8.12 29.86 11.6H36V28H20Z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="testimonio-stars" aria-label="5 estrellas">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5A623" stroke="#F5A623" stroke-width="1" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5A623" stroke="#F5A623" stroke-width="1" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5A623" stroke="#F5A623" stroke-width="1" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5A623" stroke="#F5A623" stroke-width="1" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5A623" stroke="#F5A623" stroke-width="1" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonio-text">
+            "Busqué a Cristina porque los ataques de pánico me impedían coger el metro. No esperaba que en tres meses pudiera volver a vivir con normalidad. El EMDR me parecía raro al principio, pero los resultados hablan solos. El trato de Cristina, cercano y profesional a la vez, lo hace todo más fácil."
+          </p>
+          <div class="testimonio-author">
+            <div class="testimonio-avatar" aria-hidden="true">M</div>
+            <div>
+              <div class="testimonio-name">Marcos R.</div>
+              <div class="testimonio-detail">Paciente, ansiedad y ataques de pánico</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonio 3 -->
+        <div class="testimonio-card reveal">
+          <div class="quote-mark" aria-hidden="true">
+            <svg width="36" height="28" viewBox="0 0 36 28" fill="none">
+              <path d="M0 28V17.2C0 7.73 5.36 2.43 16.08 1.3L17.6 4.9C13.01 5.89 10.43 8.12 9.86 11.6H16V28H0ZM20 28V17.2C20 7.73 25.36 2.43 36.08 1.3L37.6 4.9C33.01 5.89 30.43 8.12 29.86 11.6H36V28H20Z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="testimonio-stars" aria-label="5 estrellas">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5A623" stroke="#F5A623" stroke-width="1" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5A623" stroke="#F5A623" stroke-width="1" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5A623" stroke="#F5A623" stroke-width="1" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5A623" stroke="#F5A623" stroke-width="1" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5A623" stroke="#F5A623" stroke-width="1" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonio-text">
+            "Fui a Cristina después de años de terapia convencional que me ayudaba a entender lo que me pasaba, pero no a sentirme diferente. Con EMDR fue distinto. En pocas sesiones noté cambios que no había logrado en años. Su forma de acompañar el proceso hace que confíes completamente."
+          </p>
+          <div class="testimonio-author">
+            <div class="testimonio-avatar" aria-hidden="true">S</div>
+            <div>
+              <div class="testimonio-name">Sofía E.</div>
+              <div class="testimonio-detail">Paciente, trauma complejo</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       FAQ — ACORDEÓN CSS (details/summary)
+  ============================================= -->
+  <section class="faq" id="faq">
+    <div class="container">
+
+      <div class="faq-header reveal">
+        <span class="section-label">FAQ</span>
+        <h2>Preguntas frecuentes</h2>
+        <p>Si tienes alguna duda que no encuentres aquí, escríbeme sin compromiso.</p>
+      </div>
+
+      <div class="faq-list">
+
+        <details class="faq-item reveal">
+          <summary>
+            <span>¿Cuántas sesiones necesitaré?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </summary>
+          <div class="faq-answer">
+            <p>Depende de cada persona y de la complejidad de lo que trabajamos. Un trauma puntual (un accidente, un episodio concreto) puede resolverse en <strong>6 a 12 sesiones</strong>. Cuando hay un historial de trauma complejo o múltiples experiencias difíciles, el proceso es más largo. En la primera consulta hacemos una evaluación y te doy una estimación honesta.</p>
+          </div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>
+            <span>¿El EMDR &ldquo;revive&rdquo; recuerdos dolorosos? ¿Es seguro?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </summary>
+          <div class="faq-answer">
+            <p>Es una pregunta muy común y comprensible. El EMDR no busca revivir el trauma con toda su intensidad: se trabaja con el recuerdo de forma distanciada, desde la seguridad del momento presente. Antes de entrar en cualquier material difícil, dedicamos el tiempo necesario a construir recursos de regulación. El protocolo es <strong>graduado y siempre controlado por ti</strong>. Puedes parar en cualquier momento.</p>
+          </div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>
+            <span>¿Puedo hacer sesiones online si no estoy en Madrid?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </summary>
+          <div class="faq-answer">
+            <p>Sí. El <strong>EMDR online está avalado por la investigación</strong> y lo practico regularmente con pacientes en toda España y en el extranjero. Las sesiones se realizan por videollamada en una plataforma segura y cifrada. Solo necesitas un espacio tranquilo donde puedas estar sin interrupciones durante la sesión.</p>
+          </div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>
+            <span>¿Cuál es el precio de la sesión?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </summary>
+          <div class="faq-answer">
+            <p>La sesión individual tiene una duración de <strong>60 minutos</strong>. Puedes consultarme el precio actualizado a través del formulario de contacto o por teléfono. Ofrezco una primera consulta de valoración sin compromiso para que podamos conocernos antes de tomar ninguna decisión.</p>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       CONTACTO
+  ============================================= -->
+  <section class="contacto" id="contacto">
+    <div class="container">
+      <div class="contacto-grid">
+
+        <!-- Info column -->
+        <div class="contacto-info reveal-left">
+          <span class="section-label">Contacto</span>
+          <h2>Da el primer paso hoy</h2>
+          <p class="contacto-lead">
+            Si sientes que necesitas ayuda, o simplemente tienes dudas sobre si el EMDR es para ti, escríbeme. Te respondo en menos de 24 horas, sin compromiso.
+          </p>
+
+          <div class="info-items">
+
+            <div class="info-item">
+              <div class="info-item-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="16" y1="2" x2="16" y2="6"/>
+                  <line x1="8" y1="2" x2="8" y2="6"/>
+                  <line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+              </div>
+              <div class="info-item-text">
+                <strong>Horario de consulta</strong>
+                <span>Lunes a viernes: 9:00 &mdash; 20:00<br />Sábados: 10:00 &mdash; 14:00</span>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-item-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div class="info-item-text">
+                <strong>Ubicaci&oacute;n</strong>
+                <span>Barrio de Salamanca, Madrid<br />A 5 min del metro Lista (L4)</span>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-item-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.38 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/>
+                </svg>
+              </div>
+              <div class="info-item-text">
+                <strong>Tambi&eacute;n disponible</strong>
+                <span>Sesiones online en toda España<br />y en espa&ntilde;ol desde el extranjero</span>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-item-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </div>
+              <div class="info-item-text">
+                <strong>Confidencialidad garantizada</strong>
+                <span>Cumplimiento RGPD. Tus datos y tu historia son estrictamente privados.</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Form card -->
+        <div class="reveal-right">
+          <div class="contact-form-card">
+            <h3>Solicitar primera consulta</h3>
+            <p class="form-intro">Cuéntame brevemente qué te trae por aquí. Sin compromiso.</p>
+
+            <form id="contactForm" novalidate>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="nombre">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    Nombre
+                  </label>
+                  <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    placeholder="Tu nombre"
+                    autocomplete="given-name"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="telefono">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.38 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/></svg>
+                    Tel&eacute;fono
+                  </label>
+                  <input
+                    type="tel"
+                    id="telefono"
+                    name="telefono"
+                    placeholder="+34 6XX XXX XXX"
+                    autocomplete="tel"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="email">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  Correo electr&oacute;nico
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="tu@correo.com"
+                  autocomplete="email"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="motivo">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                  Motivo de consulta
+                </label>
+                <select id="motivo" name="motivo">
+                  <option value="" disabled selected>Selecciona una opci&oacute;n</option>
+                  <option value="trauma">Trauma o TEPT</option>
+                  <option value="ansiedad">Ansiedad o p&aacute;nico</option>
+                  <option value="trauma-complejo">Trauma complejo / infancia</option>
+                  <option value="duelo">Duelo no resuelto</option>
+                  <option value="burnout">Burnout o estr&eacute;s cr&oacute;nico</option>
+                  <option value="otro">Otro motivo</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="mensaje">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                  Cu&eacute;ntame un poco m&aacute;s
+                </label>
+                <textarea
+                  id="mensaje"
+                  name="mensaje"
+                  placeholder="Describe brevemente qué te ha traído hasta aquí y cualquier pregunta que tengas..."
+                  required
+                ></textarea>
+              </div>
+
+              <p class="form-privacy">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                Tu informaci&oacute;n es confidencial. No comparto datos con terceros, no te a&ntilde;adir&eacute; a listas de correo y puedes solicitar su eliminaci&oacute;n en cualquier momento (RGPD).
+              </p>
+
+              <button type="submit" class="btn-submit" id="submitBtn">
+                Enviar consulta
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="22" y1="2" x2="11" y2="13"/>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+              </button>
+
+            </form>
+
+            <!-- Success message (hidden by default) -->
+            <div class="form-success" id="formSuccess" role="status" aria-live="polite">
+              <div class="form-success-icon" aria-hidden="true">
+                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 15l7 7L25 7"/>
+                </svg>
+              </div>
+              <strong>Mensaje enviado</strong>
+              <p>Gracias por escribirme. Te responder&eacute; en menos de 24 horas para concretar una primera consulta sin compromiso.</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       FOOTER
+  ============================================= -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-logo">Cristina Sanz &mdash; Psic&oacute;loga EMDR Madrid</span>
+
+        <div class="footer-links">
+          <a href="#que-es-emdr">EMDR</a>
+          <a href="#proceso">El proceso</a>
+          <a href="#sobre">Sobre m&iacute;</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+
+        <span class="footer-credit">
+          Dise&ntilde;o por <a href="https://lhabiastudio.com" target="_blank" rel="noopener noreferrer">LhabiaStudio</a>
+          &nbsp;&mdash;&nbsp; &copy; <span id="yearFooter"></span>
+        </span>
+
+        <span class="footer-disclaimer">DEMO &mdash; Dise&ntilde;o conceptual. No representa un sitio real activo.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =============================================
+       JAVASCRIPT — scroll-reveal + nav + form
+  ============================================= -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* ---- Year ---- */
+      var yearEl = document.getElementById('yearFooter');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      /* ---- Nav scroll shadow ---- */
+      var mainNav = document.getElementById('mainNav');
+      if (mainNav) {
+        var navScrollHandler = function () {
+          if (window.scrollY > 10) {
+            mainNav.classList.add('scrolled');
+          } else {
+            mainNav.classList.remove('scrolled');
+          }
+        };
+        window.addEventListener('scroll', navScrollHandler, { passive: true });
+        navScrollHandler();
+      }
+
+      /* ---- Scroll-reveal (IntersectionObserver) ---- */
+      var revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+
+      if (!revealEls.length) return;
+
+      /* Graceful degradation: older browsers get everything visible */
+      if (!('IntersectionObserver' in window)) {
+        revealEls.forEach(function (el) { el.classList.add('visible'); });
+      } else {
+        var revealObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -36px 0px'
+        });
+
+        revealEls.forEach(function (el) {
+          revealObserver.observe(el);
+        });
+      }
+
+      /* ---- FAQ accordion: ensure only one open at a time on mobile ---- */
+      var faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach(function (item) {
+        item.addEventListener('toggle', function () {
+          if (item.open) {
+            faqItems.forEach(function (other) {
+              if (other !== item && other.open) {
+                other.removeAttribute('open');
+              }
+            });
+          }
+        });
+      });
+
+      /* ---- Contact form: submit handler + validation + success state ---- */
+      var contactForm  = document.getElementById('contactForm');
+      var formSuccess  = document.getElementById('formSuccess');
+      var submitBtn    = document.getElementById('submitBtn');
+
+      if (contactForm && formSuccess && submitBtn) {
+
+        /* Field validation helper */
+        function validateField(field) {
+          if (!field) return true;
+          var val = field.value.trim();
+          var valid = true;
+
+          if (field.required && !val) {
+            valid = false;
+          }
+
+          if (field.type === 'email' && val) {
+            var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRe.test(val)) valid = false;
+          }
+
+          if (!valid) {
+            field.style.borderColor = 'var(--error)';
+            field.setAttribute('aria-invalid', 'true');
+          } else {
+            field.style.borderColor = '';
+            field.removeAttribute('aria-invalid');
+          }
+
+          return valid;
+        }
+
+        /* Live validation on blur */
+        var requiredFields = contactForm.querySelectorAll('[required]');
+        requiredFields.forEach(function (field) {
+          field.addEventListener('blur', function () {
+            validateField(field);
+          });
+
+          field.addEventListener('input', function () {
+            if (field.getAttribute('aria-invalid')) {
+              validateField(field);
+            }
+          });
+        });
+
+        /* Submit */
+        contactForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+
+          var nombre  = document.getElementById('nombre');
+          var email   = document.getElementById('email');
+          var mensaje = document.getElementById('mensaje');
+
+          var allValid = true;
+          [nombre, email, mensaje].forEach(function (field) {
+            if (!validateField(field)) allValid = false;
+          });
+
+          if (!allValid) {
+            /* Scroll to first invalid field */
+            var firstInvalid = contactForm.querySelector('[aria-invalid="true"]');
+            if (firstInvalid) {
+              firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              firstInvalid.focus();
+            }
+            return;
+          }
+
+          /* Simulate sending — visual loading state */
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Enviando...';
+
+          /* Simulate async (400ms) then show success */
+          setTimeout(function () {
+            contactForm.style.display = 'none';
+            formSuccess.style.display = 'block';
+          }, 400);
+        });
+      }
+
+      /* ---- Smooth anchor scroll (override native for browsers that lack it) ---- */
+      var anchorLinks = document.querySelectorAll('a[href^="#"]');
+      anchorLinks.forEach(function (anchor) {
+        anchor.addEventListener('click', function (e) {
+          var targetId = anchor.getAttribute('href').slice(1);
+          var target   = document.getElementById(targetId);
+          if (!target) return;
+          e.preventDefault();
+          var navHeight = mainNav ? mainNav.offsetHeight : 0;
+          var top = target.getBoundingClientRect().top + window.scrollY - navHeight - 8;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        });
+      });
+
+    })();
+  </script>
+
+</body>
+</html>
